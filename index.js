@@ -9,7 +9,7 @@ const connection = new Web3('http://127.0.0.1:8545');
 connection.eth.getAccounts().then(console.log);
 connection.eth.getBalance(UserA).then(console.log);
 
-const abi = JSON.parse(fs.readFileSync('SmartContract_sol_SmartContract.abi'));
+const abi = JSON.parse(fs.readFileSync('SmartContract_sol_SmartContract.abi')); // Sth like WSDL
 const contract = new connection.eth.Contract(abi);
 const listOfPosts = [
     'A Beginner’s Guide to Ethereum',
@@ -20,9 +20,8 @@ const listOfPosts = [
 ];
 
 contract.deploy({
-  data: fs.readFileSync('SmartContract_sol_SmartContract.bin').toString(),
-  arguments: [listOfPosts.map((name) =>
-    connection.utils.asciiToHex(name))]
+  data: fs.readFileSync('SmartContract_sol_SmartContract.bin').toString(), // The binary code
+  arguments: [listOfPosts.map((name) => connection.utils.asciiToHex(name))] // Parameter for the function
   }).send({
     from: UserA,
     gasPrice: connection.utils.toWei('0.000000000003', 'ether'),
