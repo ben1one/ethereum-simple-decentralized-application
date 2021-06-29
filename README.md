@@ -6,3 +6,5 @@ A decentralized application (dapp) containing a smart contract deployed to an in
 
 ## Client
 `node index.js`
+
+test
